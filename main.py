@@ -1,4 +1,6 @@
+import random
 def play_round():
+    random_num = random.choice(100)
     print("Welcome to the Number Guessing Game!")
     print("I'm thinking of a number between 1 and 100.")
     print("You have 5 chances to guess the correct number.")
