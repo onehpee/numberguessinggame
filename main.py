@@ -5,35 +5,38 @@ def game_round(rounds):
     print("1. Easy (10 chances)")
     print("2. Medium (5 chances)")
     print("3. Hard (3 chances)")
-    for num_rounds in range(1, rounds + 1):
-        print(f"Round {num_rounds}: Guess the number between 1 and 100")
-        random_num = random.randint(1, 100)
-        guesses = 0
-        
-        while True:
-            try:
-                guess = int(input("Enter your guess: "))
-                guesses += 1
-                if guess == random_num:
-                    print(f"Congratulations! You guessed the correct number in ${guesses} attempts.")
-                elif guess < random_num:
-                    print(f"Incorrect! The number is less than ${guess}.")
-                else:
-                    print(f"Incorrect! The number is greater than ${guess}.")
-            except ValueError:
-                print("Invalid input. Enter a number")
+   
+    number = random.randint(1, 100)
+    guess = 0
+    attempts = 0
+    print(f"\nRound {rounds}: Guess the number between 1 and 100")
+
+    while guess != number:
+        try:
+            guess = int(input("Enter your guess: "))
+            attempts += 1
+            if guess < number:
+                print(f"Incorrect! The number is less than {guess}.")
+            elif guess > number:
+                print(f"Incorrect! The number is greater than {guess}.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+    print(f"Congratulations! You guessed the number {number} in {attempts} attempts.")
+
+def play_game():
+    while True:
+        try:
+            num_rounds = int(input("How many rounds do you want to play? "))
+            if num_rounds <= 0:
+                print("Please enter a positive number of rounds.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input. Please enter a number.")
     
+    for i in range(1, num_rounds + 1):
+        game_round(i)
+    print("Game over!")
 
-
-    
-    print("Round ended.")
-    return True  # Or return False to stop the game
-
-def main():
-  
-if __name__ == "__main__":
-    main()
-
-
-
-
+play_game()
